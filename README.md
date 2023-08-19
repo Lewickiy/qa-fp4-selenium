@@ -15,5 +15,4 @@ Java 11 / Junit 4.13.2 / Selenium-java 3.141.59 / Apache Maven 3.9.2
     Mozilla Firefox browser passes tests successfully.
   </li>
 </ui>
-
-'mvn clean test'
+"mvn clean test"
