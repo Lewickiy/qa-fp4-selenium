@@ -2,7 +2,6 @@ package org.example.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ConfirmationModal {
     private final WebDriver WEB_DRIVER;
