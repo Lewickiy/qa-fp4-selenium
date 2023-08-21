@@ -8,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 public class OrderDetails {
     private final WebDriver WEB_DRIVER;
     private UniversalOperation universalOperation;
-    private final By INPUT_DATA = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[1]/div/div/input");
-    private final By DROPDOWN_CONTROL = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[2]/div[1]");
-    private final By RENTAL_DURATION = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[2]/div[2]/div[1]");
-    private final By CHECKBOX_COLOR = By.xpath("//*[@id='black']");
-    private final By COMMENT_INPUT = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[4]/input");
-    private final By ORDER_BUTTON = By.xpath("//*[@id='root']/div/div[2]/div[3]/button[2]");
+    private final By INPUT_DATA = By.xpath(".//input[contains(@placeholder,'* Когда привезти самокат')]");
+    private final By DROPDOWN_CONTROL = By.xpath(".//div[text()='* Срок аренды']");
+    private final By RENTAL_DURATION = By.xpath(".//div[@class='Dropdown-menu']");
+    private final By CHECKBOX_COLOR = By.xpath(".//*[@id='black']");
+    private final By COMMENT_INPUT = By.xpath(".//input[contains(@placeholder,'Комментарий для курьера')]");
+    private final By ORDER_BUTTON = By.xpath("//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
 
     public OrderDetails(WebDriver webDriver) {
         this.WEB_DRIVER = webDriver;

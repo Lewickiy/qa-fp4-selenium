@@ -10,15 +10,13 @@ import java.util.regex.Pattern;
 public class ForWhomScooter {
     private final WebDriver webDriver;
     private final UniversalOperation universalOperation;
-    private final By firstnameInput = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[1]/input");
-    private final By lastnameInput = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[2]/input");
-    private final By addressInput = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[3]/input");
-    private final By selectSubwayStation = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[4]/div/div/input");
-    private final By phoneInput = By.xpath("//*[@id='root']/div/div[2]/div[2]/div[5]/input");
-
-    private final By nextButtonOne = By.xpath("//*[@id='root']/div/div[2]/div[3]/button");
-
-    private final By cookieButton = By.xpath("//*[@id='rcc-confirm-button']");
+    private final By firstnameInput = By.xpath(".//input[contains(@placeholder,'* Имя')]");
+    private final By lastnameInput = By.xpath(".//input[contains(@placeholder,'* Фамилия')]");
+    private final By addressInput = By.xpath(".//input[contains(@placeholder,'* Адрес: куда привезти заказ')]");
+    private final By selectSubwayStation = By.xpath(".//input[contains(@placeholder,'* Станция метро')]");
+    private final By phoneInput = By.xpath(".//input[contains(@placeholder,'* Телефон: на него позвонит курьер')]");
+    private final By nextButtonOne = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and contains(text(), 'Далее')]");
+    private final By cookieButton = By.xpath(".//*[@id='rcc-confirm-button']");
 
     public ForWhomScooter(WebDriver webDriver) {
         this.webDriver = webDriver;

@@ -2,53 +2,28 @@ package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.operations.UniversalOperation;
-import org.example.pom.*;
+import org.example.pom.ConfirmationModal;
+import org.example.pom.ForWhomScooter;
+import org.example.pom.OrderDetails;
+import org.example.pom.OrderModal;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class MainTest {
+public class OrdersTest {
     private WebDriver webDriver;
-    String message;
     private UniversalOperation universalOperation;
-    private final By headerOrderButton = By.cssSelector(".Header_Nav__AGCXC > button:nth-child(1)");
-    private final By thirdPartOrderButton = By.xpath("/html/body/div/div/div/div[4]/div[2]/div[5]/button");
+    public final By headerOrderButton = By.cssSelector(".Header_Nav__AGCXC > button:nth-child(1)");
+    public final By thirdPartOrderButton = By.xpath("//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
 
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-    }
-
-    @Test
-    public void isThePanelVisibleAfterClickingOnTheAccordionHeadings() {
-        webDriver = new ChromeDriver();
-        webDriver.get("https://qa-scooter.praktikum-services.ru/");
-        Accordion objAccordionFAQ = new Accordion(webDriver);
-        universalOperation = new UniversalOperation(webDriver);
-        List<WebElement> webElementList = objAccordionFAQ.getWebElements();
-
-        for (WebElement webElement : webElementList) {
-            boolean actualResult;
-
-            By heading = By.id(webElement.getAttribute("id"));
-            By panel = By.id(webElement.getAttribute("aria-controls"));
-
-            universalOperation.scrollToElement(heading);
-            universalOperation.clickElement(heading);
-            universalOperation.waitForLoadData(panel);
-            actualResult = universalOperation.isElementDisplayed(heading);
-            message = String.format("После клика по заголовку (%s) панель (%s) открывается и становится видимой: %b", heading, panel, actualResult);
-
-            assertTrue(message, actualResult);
-        }
     }
 
     @Test
