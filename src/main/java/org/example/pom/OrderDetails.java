@@ -3,42 +3,41 @@ package org.example.pom;
 import org.example.operations.UniversalOperation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 
-public class OrderDetails {
-    private final WebDriver WEB_DRIVER;
-    private UniversalOperation universalOperation;
-    private final By INPUT_DATA = By.xpath(".//input[contains(@placeholder,'* Когда привезти самокат')]");
-    private final By DROPDOWN_CONTROL = By.xpath(".//div[text()='* Срок аренды']");
-    private final By RENTAL_DURATION = By.xpath(".//div[@class='Dropdown-menu']");
-    private final By CHECKBOX_COLOR = By.xpath(".//*[@id='black']");
-    private final By COMMENT_INPUT = By.xpath(".//input[contains(@placeholder,'Комментарий для курьера')]");
-    private final By ORDER_BUTTON = By.xpath("//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
+public class OrderDetails extends UniversalOperation {
+    private final By inputDate = By.xpath(".//input[contains(@placeholder,'* Когда привезти самокат')]");
+    private final By dropdownControl = By.xpath(".//div[text()='* Срок аренды']");
+    private final By rentalDuration = By.xpath(".//div[@class='Dropdown-menu']");
+    private final By checkboxColor = By.xpath(".//*[@id='black']");
+    private final By commentInput = By.xpath(".//input[contains(@placeholder,'Комментарий для курьера')]");
+    private final By orderButton = By.xpath("//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
 
-    public OrderDetails(WebDriver webDriver) {
-        this.WEB_DRIVER = webDriver;
+    private void setDate(String date) {
+        sendKeysInput(inputDate, date + Keys.ENTER);
     }
 
-    public void setDate() {
-        universalOperation = new UniversalOperation(WEB_DRIVER);
-        universalOperation.sendKeysInput(INPUT_DATA, "11.11.2022" + Keys.ENTER);
+    private void selectRentalDuration() {
+        clickElement(dropdownControl);
+        clickElement(rentalDuration);
     }
 
-    public void selectRentalDuration() {
-        universalOperation.clickElement(DROPDOWN_CONTROL);
-        universalOperation.clickElement(RENTAL_DURATION);
+    private void selectColor() {
+        clickElement(checkboxColor);
     }
 
-    public void selectColor() {
-        universalOperation.clickElement(CHECKBOX_COLOR);
+    private void enterOrderComment(String comment) {
+        sendKeysInput(commentInput, comment);
     }
 
-    public void enterOrderComment(String comment) {
-        universalOperation.sendKeysInput(COMMENT_INPUT, comment);
+    private void pressSendOrderButton() {
+        clickElement(orderButton);
     }
 
-    public void pressSendOrderButton() {
-        universalOperation.clickElement(ORDER_BUTTON);
+    public void fillForm(String date, String comment) {
+        setDate(date);
+        selectRentalDuration();
+        selectColor();
+        enterOrderComment(comment);
+        pressSendOrderButton();
     }
-
 }
